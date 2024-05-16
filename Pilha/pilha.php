@@ -2,36 +2,36 @@
 <?php
 
 // Class for stacks operations
-class Pilha{
+class Stack{
     // list
-    public $lista = array();
+    public $list = array();
 
     // Initial function
     public function __construct(){
-        $this->lista = array();
+        $this->list = array();
     }
     // Function that checks if it is empty
-    public function vazia(){
-        return empty($this->lista);
+    public function empty(){
+        return empty($this->list);
     }
     // Puts item in the final list
     public function push($item){
-        array_push($this->lista, $item);
+        array_push($this->list, $item);
     }
     // Removes the last item from the list
     public function pop(){
         // Only delete the item from the list if it is not empty
-        if (!$this->vazia()){
-            array_pop($this->lista);
+        if (!$this->empty()){
+            array_pop($this->list);
         }else{
             throw new Exception("A lista está vazia");
         }
     }
     // Stores the last item in the list in a variable
-    public function topo(){
+    public function top(){
         // Return a value only if the list is different from empty
-        if (!$this->vazia()){
-            return end($this->lista);
+        if (!$this->empty()){
+            return end($this->list);
         }else{
             return null;
         }
@@ -39,14 +39,14 @@ class Pilha{
 };
 
 // Declare of the class
-$pilha = new Pilha();
+$stack = new Stack();
 
 // Fills the list with 100 numbers
 for ($i = 0; $i < 10+1; $i++) {
-    $pilha->push($i);
+    $stack->push($i);
     echo "\nLista: ";
     echo "[";
-    foreach ($pilha->lista as $item) {
+    foreach ($stack->list as $item) {
         echo $item . ", ";
     }
     echo "]\n";
@@ -54,16 +54,15 @@ for ($i = 0; $i < 10+1; $i++) {
 }
 
 // Emptying the entire list
-while (!$pilha->vazia()){
-    $ultimo_item_lista = $pilha->topo();
-    $pilha->pop();
-    echo "\n\nItem removido da lista com sucesso: [$ultimo_item_lista]\n";
+while (!$stack->empty()){
+    $last_item_list = $stack->top();
+    $stack->pop();
+    echo "\n\nItem removido da lista com sucesso: [$last_item_list]\n";
     echo "\n[ ";
-    foreach($pilha->lista as $item){
+    foreach($stack->list as $item){
         echo $item . ", ";
     }
     echo "]\n";
     sleep(1);
 }
 ?>
-
